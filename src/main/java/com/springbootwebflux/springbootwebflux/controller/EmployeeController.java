@@ -40,16 +40,23 @@ public class EmployeeController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public Mono<EmployeeDto> createTutorial(@RequestBody EmployeeDto employeeDto) {
+  public Mono<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto) {
     return employeeService.saveEmployee(employeeDto);
   }
 
 
-@GetMapping("/{Id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<Employee> getEmployeeById(@PathVariable("Id") String Id) {
-    return employeeService.getEmployeeById(Id);
-  }
+    @GetMapping("/{Id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Employee> getEmployeeById(@PathVariable("Id") String Id) {
+        return employeeService.getEmployeeById(Id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<EmployeeDto> updateTutorial(@PathVariable("id") String id, @RequestBody EmployeeDto employeeDto) {
+        return employeeService.updateEmployee(id, employeeDto);
+    }
+
 
 
 }

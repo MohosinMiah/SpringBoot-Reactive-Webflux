@@ -1,5 +1,7 @@
 package com.springbootwebflux.springbootwebflux.service.Impl;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +46,23 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         // Find employee by Id
         Mono<Employee> employeeFlux = employeeRepository.findById(Id);
-        System.out.println(employeeFlux);
         return employeeFlux;
+    }
+
+    @Override
+    public Mono<EmployeeDto> updateEmployee(String id, EmployeeDto employeeDto) {
+        // Update employee
+            Mono<Employee> getEmployee =  employeeRepository.findById(id);
+            Mono<Employee> updatedEmployee = getEmployee.flatMap( (existingEmployee) -> {
+                existingEmployee.setFirstName(employeeDto.getFirstName());
+                existingEmployee.setFirstName(employeeDto.getLastName());
+                existingEmployee.setFirstName(employeeDto.getEmail());
+                return   employeeRepository.save(existingEmployee);
+        });
+
+        return updatedEmployee.map(
+            (employee) -> EmployeeMapper.mapToEmployeeDto(employee)
+        );
     }
 
    

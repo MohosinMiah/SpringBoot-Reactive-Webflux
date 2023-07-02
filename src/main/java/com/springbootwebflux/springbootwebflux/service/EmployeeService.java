@@ -13,4 +13,6 @@ public interface EmployeeService {
     public Flux<EmployeeDto> getAllEmployy();
 
     public Mono<Employee> getEmployeeById(String Id);
+
+    public Mono<EmployeeDto> updateEmployee(String id, EmployeeDto employeeDto);
 }
