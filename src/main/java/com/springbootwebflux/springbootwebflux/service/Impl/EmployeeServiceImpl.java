@@ -65,7 +65,12 @@ public class EmployeeServiceImpl implements EmployeeService{
         );
     }
 
-   
+    @Override
+    public Mono<Void> deleteEmployeeById(String id) {
+        // Delete employee by ID
+        return employeeRepository.deleteById(id);
+
+    }
 
   
 }
