@@ -3,23 +3,25 @@ package com.springbootwebflux.springbootwebflux.mapper;
 import com.springbootwebflux.springbootwebflux.dto.EmployeeDto;
 import com.springbootwebflux.springbootwebflux.entirty.Employee;
 
+import reactor.core.publisher.Mono;
+
 public class EmployeeMapper {
 
     public static EmployeeDto mapToEmployeeDto(Employee employee) {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(employee.getId());
-        employeeDto.setFirstName(employee.getFirstName());
-        employeeDto.setLastName(employee.getLastName());
-        employeeDto.setEmail(employee.getEmail());
-        return employeeDto;
+        return new  EmployeeDto(
+            employee.getId(),
+            employee.getFirstName(),
+            employee.getLastName(),
+            employee.getEmail()
+        );
     }
 
     public static Employee mapToEmployee(EmployeeDto employeeDto) {
-        Employee employee = new Employee();
-        employee.setId(employeeDto.getId());
-        employee.setFirstName(employeeDto.getFirstName());
-        employee.setLastName(employeeDto.getLastName());
-        employee.setEmail(employeeDto.getEmail());
-        return employee;
+         return new  Employee(
+            employeeDto.getId(),
+            employeeDto.getFirstName(),
+            employeeDto.getLastName(),
+            employeeDto.getEmail()
+        );
     }
 }
