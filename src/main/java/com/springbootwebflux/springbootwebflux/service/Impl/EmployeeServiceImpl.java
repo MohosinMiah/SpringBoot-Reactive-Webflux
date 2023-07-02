@@ -39,6 +39,15 @@ public class EmployeeServiceImpl implements EmployeeService{
        .switchIfEmpty(Flux.empty());
     }
 
+    @Override
+    public Mono<Employee> getEmployeeById(String Id) {
+
+        // Find employee by Id
+        Mono<Employee> employeeFlux = employeeRepository.findById(Id);
+        System.out.println(employeeFlux);
+        return employeeFlux;
+    }
+
    
 
   

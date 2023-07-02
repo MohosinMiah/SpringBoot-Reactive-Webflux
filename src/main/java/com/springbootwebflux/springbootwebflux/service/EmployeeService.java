@@ -11,4 +11,6 @@ public interface EmployeeService {
     public Mono<EmployeeDto> saveEmployee(EmployeeDto employeeDto);
 
     public Flux<EmployeeDto> getAllEmployy();
+
+    public Mono<Employee> getEmployeeById(String Id);
 }
